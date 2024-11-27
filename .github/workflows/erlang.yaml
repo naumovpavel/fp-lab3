@@ -1,0 +1,22 @@
+name: Check Erlang
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  lint:
+    runs-on: erlang:latest
+
+    steps:
+      - run: rebar3 get-deps
+      - run: rebar3 lint
+
+  unit:
+    runs-on: erlang:latest
+
+    steps:
+      - run: rebar3 get-deps
+      - run: rebar3 eunit
