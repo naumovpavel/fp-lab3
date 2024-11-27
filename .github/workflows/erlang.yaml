@@ -8,14 +8,18 @@ on:
 
 jobs:
   lint:
-    runs-on: erlang:latest
+    runs-on: ubuntu-latest
+    container:
+      image: erlang:latest
 
     steps:
       - run: rebar3 get-deps
       - run: rebar3 lint
 
   unit:
-    runs-on: erlang:latest
+    runs-on: ubuntu-latest
+    container:
+      image: erlang:latest
 
     steps:
       - run: rebar3 get-deps
