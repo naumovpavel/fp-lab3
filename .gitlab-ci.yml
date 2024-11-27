@@ -1,6 +1,17 @@
 stages:
+  - format
   - lint
-  - unit-test
+  - test
+
+format-erlang:
+  stage: format
+  image: erlang:latest
+  script:
+    - rebar3 get-deps
+    - rebar3 format
+  only:
+    - merge_requests
+    - master
 
 linter-erlang:
   stage: lint
@@ -12,8 +23,8 @@ linter-erlang:
     - merge_requests
     - master
 
-unit-test:
-  stage: unit-test
+test-erlang:
+  stage: test
   image: erlang:latest
   script:
     - rebar3 get-deps
